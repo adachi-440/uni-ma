@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  name: 
+  explanation: 
+  image_id: 
+  category: 
+  tag_id: 
+  price: 
+  lecture_id: 
+  status_id: 
+  place: 
+  sold: 
+  view: 1
+
+two:
+  user_id: 
+  name: 
+  explanation: 
+  image_id: 
+  category: 
+  tag_id: 
+  price: 
+  lecture_id: 
+  status_id: 
+  place: 
+  sold: 
+  view: 1

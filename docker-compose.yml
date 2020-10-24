@@ -17,6 +17,7 @@ services:
       - db-volume:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: unima1023
+      MYSQL_DATABASE: unima_local
     ports:
       - '33066:3306'
 volumes:
