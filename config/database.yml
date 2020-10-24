@@ -10,7 +10,9 @@ default: &default
   pool: 5
   username: root
   password: unima1023
-  host: db
+  database: unima_local
+  socket: /var/run/mysqld/mysqld.sock
+  port: 33066
 
 development:
   <<: *default
