@@ -51,17 +51,22 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
+# 認証
 gem 'devise'
 gem 'devise-two-factor'
 gem 'omniauth'
 
+# view
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'pundit'
 gem 'draper'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
-gem 'ransack'
 gem 'simple_form'
+
+# 検索
+gem 'ransack'
+
+# env
+gem 'dotenv-rails'
