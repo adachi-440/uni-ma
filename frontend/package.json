@@ -1,0 +1,36 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
+    "watch": "webpack --watch",
+    "clean": "rimraf public/dist",
+    "dev": "webpack serve --progress --inline --hot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^1.2.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.4",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "clean-webpack-plugin": "^3.0.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "webpack-manifest-plugin": "^2.2.0"
+  }
+}

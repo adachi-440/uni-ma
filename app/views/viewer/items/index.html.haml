@@ -1,0 +1,4 @@
+- if @user.profile_image?
+  = image_tag @user.profile_image.url(:th)
+- else
+  %p 画像は存在しません
