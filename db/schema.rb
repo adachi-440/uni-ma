@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_24_105027) do
+ActiveRecord::Schema.define(version: 2020_10_30_192306) do
 
-  create_table "evaluations", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "evaluations", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "evaluator_id", null: false, comment: "評価者ID", unsigned: true
     t.integer "evaluated_id", null: false, comment: "被評価者ID", unsigned: true
     t.integer "rank", null: false, comment: "評価", unsigned: true
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["evaluator_id", "evaluated_id"], name: "index_evaluations_on_evaluator_id_and_evaluated_id", unique: true
   end
 
-  create_table "favorites", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "favorites", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "user_id", null: false, comment: "ユーザーID", unsigned: true
     t.integer "item_id", null: false, comment: "商品ID", unsigned: true
     t.datetime "created_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["user_id"], name: "user_idx"
   end
 
-  create_table "histories", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "histories", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "user_id", null: false, comment: "ユーザーID", unsigned: true
     t.integer "item_id", null: false, comment: "商品ID", unsigned: true
     t.datetime "created_at", null: false
@@ -41,19 +41,19 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["user_id"], name: "user_idx"
   end
 
-  create_table "item_images", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "item_images", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "file", null: false, comment: "ファイル名"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "item_tags", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "item_tags", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "items", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "items", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "user_id", null: false, comment: "ユーザーID", unsigned: true
     t.string "name", null: false, comment: "商品名"
     t.string "explanation", limit: 3000, comment: "商品説明"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.integer "item_status_id", null: false, comment: "商品状態ID", unsigned: true
     t.string "place", null: false, comment: "取引場所"
     t.boolean "sold", default: false, null: false, comment: "購入状態フラグ"
-    t.integer "view", default: 0, null: false, comment: "閲覧数", unsigned: true
+    t.integer "viewer", default: 0, null: false, comment: "閲覧数", unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "item_category_idx"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["user_id"], name: "user_idx"
   end
 
-  create_table "lectures", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "lectures", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "name", null: false, comment: "講義名"
     t.string "teacher", comment: "教授名"
     t.integer "lecture_term_id", comment: "講義時期ID", unsigned: true
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["lecture_term_id"], name: "lecture_term_idx"
   end
 
-  create_table "messages", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "messages", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "item_id", null: false, comment: "商品ID", unsigned: true
     t.string "content", null: false, comment: "メッセージ内容"
     t.datetime "created_at", null: false
@@ -93,14 +93,14 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["item_id"], name: "item_idx"
   end
 
-  create_table "notifications", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "notifications", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.string "title", null: false, comment: "タイトル"
     t.string "content", limit: 3000, null: false, comment: "内容"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "relationships", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", comment: "ID", force: :cascade do |t|
+  create_table "relationships", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "follow_id", null: false, comment: "フォローID", unsigned: true
     t.integer "follower_id", null: false, comment: "フォロワーID", unsigned: true
     t.datetime "created_at", null: false
@@ -110,20 +110,30 @@ ActiveRecord::Schema.define(version: 2020_10_24_105027) do
     t.index ["follower_id"], name: "follower_idx"
   end
 
-  create_table "users", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false, comment: "ユーザー名"
     t.string "email", null: false, comment: "メールアドレス"
     t.string "encrypted_password", null: false, comment: "パスワード"
     t.string "profile_image", comment: "プロフィール画像"
-    t.string "university", null: false, comment: "所属大学"
-    t.string "department", null: false, comment: "所属学部"
-    t.string "faculty", null: false, comment: "所属学科"
+    t.string "university", comment: "所属大学"
+    t.string "department", comment: "所属学部"
+    t.string "faculty", comment: "所属学科"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.binary "file", comment: "プロフィール画像"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

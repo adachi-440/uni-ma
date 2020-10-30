@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {
-      :registrations => 'users/registrations',
-      :sessions => 'users/sessions'
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+    :confirmations => 'users/confirmations',
   }
 
   devise_scope :user do
@@ -10,4 +11,19 @@ Rails.application.routes.draw do
     get 'login', :to => 'users/sessions#new'
     get 'logout', :to => 'users/sessions#destroy'
   end
+
+  namespace :users do
+    resources :main_registrations do
+      get :profile_image, on: :collection
+      patch :upload_profile_image
+      get :department_search, on: :collection
+      get :faculty_search, on: :collection
+    end
+  end
+
+  namespace :viewer do
+    resources :items
+  end
+
+  root to: 'viewer/items#index'
 end

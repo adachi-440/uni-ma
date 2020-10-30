@@ -1,0 +1,8 @@
+.container
+  %h2 プロフィール画像の登録
+  = simple_form_for @user, url: users_main_registration_upload_profile_image_path(@user) do |f|
+    .form-group
+      = f.file_field :profile_image
+    .form-actions
+      = f.button :submit, "登録", class: 'btn btn-primary'
+
