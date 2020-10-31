@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_192306) do
     t.integer "item_status_id", null: false, comment: "商品状態ID", unsigned: true
     t.string "place", null: false, comment: "取引場所"
     t.boolean "sold", default: false, null: false, comment: "購入状態フラグ"
-    t.integer "viewer", default: 0, null: false, comment: "閲覧数", unsigned: true
+    t.integer "view", default: 0, null: false, comment: "閲覧数", unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "item_category_idx"

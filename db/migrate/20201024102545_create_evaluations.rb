@@ -5,7 +5,7 @@ class CreateEvaluations < ActiveRecord::Migration[5.2]
       t.integer :evaluated_id, null: false, unsigned: true, comment: '被評価者ID'
       t.integer :rank, null: false, unsigned: true, comment: '評価'
 
-      t.index [:evaluator_id, :evaluated_id], unique: true
+      t.index %i[evaluator_id evaluated_id], unique: true
 
       t.timestamps
     end
