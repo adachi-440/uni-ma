@@ -1,12 +1,16 @@
 class User < ApplicationRecord
   mount_uploader :profile_image, ImageUploader
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable, and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
-  def is_confirmation_period_expired?
+  def confirmation_expired?
     # メールアドレス確認メール有効期限チェック(期限はconfig/initializers/devise.rbのconfirm_withinで設定)
-    self.confirmation_period_expired?
+    confirmation_period_expired?
+  end
+
+  def remember_me
+    true
   end
 end

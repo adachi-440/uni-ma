@@ -6,22 +6,21 @@ class Users::MainRegistrationsController < ApplicationController
     @user = current_user
     result = SearchUniversity.new.search_university(params[:university_name])
     @result_university = {}
-    if result['results']['school'].present?
-      if result['results']['results_available'] == "1"
-        @result_university.merge!(result['results']['school']['name'] => result['results']['school']['name'])
-      else
-        result['results']['school'].each do |school|
-          @result_university.merge!(school['name'] => school['name'])
-        end
+    return if result['results']['school'].blank?
+
+    if result['results']['results_available'] == '1'
+      @result_university.merge!(result['results']['school']['name'] => result['results']['school']['name'])
+    else
+      result['results']['school'].each do |school|
+        @result_university.merge!(school['name'] => school['name'])
       end
     end
   end
 
-
   def department_search
     result = SearchUniversity.new.search_university(params[:university_name])
     @result_department = {}
-    if result['results']['results_available'] == "1"
+    if result['results']['results_available'] == '1'
       department_divided_case(result['results']['school']['faculty'])
     else
       result['results']['school'].each do |school|
@@ -34,12 +33,10 @@ class Users::MainRegistrationsController < ApplicationController
     end
   end
 
-
   def faculty_search
     result = SearchUniversity.new.search_university(params[:university_name])
-    p result
     @result_faculty = {}
-    if result['results']['results_available'] == "1"
+    if result['results']['results_available'] == '1'
       faculty_divided_case(result['results']['school']['faculty'])
     else
       result['results']['school'].each do |school|
@@ -96,17 +93,16 @@ class Users::MainRegistrationsController < ApplicationController
 
   def faculty_divided_case(faculties)
     faculties.each do |faculty|
-      if faculty['name'] == params[:department_name]
-        department = faculty['department']
-        if department.class == String
-          @result_faculty.merge!(department => 1)
-        else
-          department.each_with_index do |department, index|
-            @result_faculty.merge!(department => index + 1)
-          end
+      next unless faculty['name'] == params[:department_name]
+
+      department = faculty['department']
+      if department.class == String
+        @result_faculty.merge!(department => 1)
+      else
+        department.each_with_index do |dep, index|
+          @result_faculty.merge!(dep => index + 1)
         end
       end
     end
   end
-
 end
