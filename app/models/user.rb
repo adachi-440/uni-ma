@@ -13,4 +13,16 @@ class User < ApplicationRecord
   def remember_me
     true
   end
+
+  def university?
+    university.present?
+  end
+
+  def department?
+    department.present?
+  end
+
+  def faculty?
+    faculty.present?
+  end
 end

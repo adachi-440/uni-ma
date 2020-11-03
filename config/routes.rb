@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       patch :upload_profile_image
       get :department_search, on: :collection
       get :faculty_search, on: :collection
+      get :university_edit, on: :collection
+      get :profile_image_edit, on: :collection
     end
   end
 
