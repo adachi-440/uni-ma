@@ -10,7 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
-<orderEntry type="library" name="gems" level="project" />
+    <orderEntry type="library" name="gems" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="actioncable (v5.2.4.4, ruby-2.6.6-p146) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v5.2.4.4, ruby-2.6.6-p146) [gem]" level="application" />

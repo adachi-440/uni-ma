@@ -1,0 +1,25 @@
+.container
+  %h2 所属大学編集
+  = form_tag university_edit_users_main_registrations_path, :method => 'get' do
+    .form-group
+      %label 大学名
+      = text_field_tag :university_name, @university_name, { class: 'form-control' }
+    .form-actions
+      = submit_tag "検索", class: 'btn btn-primary'
+  = simple_form_for @user, url: users_main_registration_path(@user) do |f|
+    - if @result_university.present? || @selected_university.present?
+      .form-group.js-university-info
+        %label 大学名
+        = f.select :university, options_for_select(@result_university, @selected_university), { include_blank: '選択してください' }, { class: 'form-control js-university-select' , required: true }
+        .js-department-form{ style: 'display: none' }
+          %label 学部名
+          = f.select :department, options_for_select(@result_department, @selected_department), { include_blank: '選択してください' }, { class: 'form-control js-department-select' , required: true }
+        .js-faculty-form{ style: 'display: none' }
+          %label 学科名
+          = f.select :faculty, options_for_select(@result_faculty, @selected_faculty), { include_blank: '選択してください' },{ class: 'form-control js-faculty-select' , required: true }
+    - else
+      %br
+      %p 検索結果はありません
+    -#  todo 確認用のモーダル表示したいかも
+    .form-actions
+      = f.button :submit, "保存", class: 'btn btn-primary'

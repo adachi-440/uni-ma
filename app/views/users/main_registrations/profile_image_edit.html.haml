@@ -1,0 +1,14 @@
+.container
+  %h2 プロフィール画像の編集
+  .js-preview-contents
+    - if @user.profile_image?
+      .js-preview-content
+        = image_tag @user.profile_image.url(:thumb), class: 'js-uploaded-image'
+    - else
+      %p{ class: 'js-image-none' }
+        画像は存在しません
+  = simple_form_for @user, url: users_main_registration_upload_profile_image_path(@user), html: { class: 'js-upload-profile-image-from'} do |f|
+    .form-group
+      = f.file_field :profile_image, class: 'image_form__contents__field hidden_file'
+    .form-actions
+      = f.button :submit, "保存", class: 'btn btn-primary'
