@@ -66,6 +66,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'devise-two-factor'
 gem 'omniauth'
+gem 'omniauth-google-oauth2'
 
 # viewer
 gem 'bootstrap-sass'
@@ -75,6 +76,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'pundit'
 gem 'simple_form'
+gem 'font-awesome-sass'
 
 # 検索
 gem 'ransack'
