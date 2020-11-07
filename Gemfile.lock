@@ -77,6 +77,7 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     childprocess (3.0.0)
+    chunky_png (1.3.14)
     coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -260,6 +261,10 @@ GEM
     rexml (3.2.4)
     rmagick (4.1.2)
     rotp (2.1.2)
+    rqrcode (1.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 0.1)
+    rqrcode_core (0.1.2)
     rubocop (0.93.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
@@ -386,6 +391,7 @@ DEPENDENCIES
   rails (~> 5.2.4, >= 5.2.4.4)
   ransack
   rmagick
+  rqrcode
   rubocop
   rubocop-performance
   rubocop-rails

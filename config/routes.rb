@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get 'logout', to: 'users/sessions#destroy'
   end
 
+  resource :two_factor_auth, only: [:new, :create, :destroy]
+
   namespace :users do
     resources :main_registrations do
       get :profile_image, on: :collection
