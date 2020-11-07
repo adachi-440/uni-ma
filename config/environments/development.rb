@@ -63,12 +63,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.smtp_settings = {
-      :enable_starttls_auto => true,
-      :address => "smtp.gmail.com",
-      :port => 587,
-      :user_name => "tomoki1999314@gmail.com", #gmailアドレス
-      :password => "tomoki0314", #gmailパスワード
-      :authentication => :plain,
+    enable_starttls_auto: true,
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: 'tomoki1999314@gmail.com', # gmailアドレス
+    password: 'tomoki0314', # gmailパスワード
+    authentication: :plain
   }
-
 end

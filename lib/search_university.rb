@@ -4,7 +4,7 @@ require 'net/http'
 
 class SearchUniversity
   def search_university(university, retry_count = 10)
-    raise ArgumentError, 'too many HTTP redirects' if retry_count == 0
+    raise ArgumentError, 'too many HTTP redirects' if retry_count.zero?
 
     uri = Addressable::URI.parse("http://webservice.recruit.co.jp/shingaku/school/v1/?key=5f41f9c3dda79e9d&name=#{university}")
 
@@ -19,7 +19,7 @@ class SearchUniversity
       when Net::HTTPSuccess
         doc = Nokogiri::XML(response.body)
         hash = Hash.from_xml(doc.to_s)
-        if 1 == 0
+        if 1.zero?
           nil
         else
           hash
@@ -27,16 +27,14 @@ class SearchUniversity
 
       when Net::HTTPRedirection
         location = response['location']
-        Rails.logger.error(warn "redirected to #{location}")
+        Rails.logger.error(warn("redirected to #{location}"))
         search_area(form_words, start_date, end_date, retry_count - 1)
       else
-        Rails.logger.error([uri.to_s, response.value].join(" : "))
+        Rails.logger.error([uri.to_s, response.value].join(' : '))
       end
-
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error(e.message)
       raise e
     end
   end
 end
-

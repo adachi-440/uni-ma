@@ -1,0 +1,10 @@
+.container
+  %h2 ログイン
+
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f|
+    .form-group
+      = f.label :otp_attempt
+      %br
+      = f.text_field :otp_attempt, class: 'form-control'
+    .form.actions
+      = f.submit 'Verify', class: 'btn btn-primary'

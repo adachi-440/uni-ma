@@ -10,13 +10,13 @@
     - if @result_university.present?
       .form-group.js-university-info
         %label 大学名
-        = f.select :university, @result_university, { include_blank: '選択してください'}, { class: 'form-control js-university-select' , required: true }
+        = f.select :university, options_for_select(@result_university), { include_blank: '選択してください' }, { class: 'form-control js-university-select' , required: true }
         .js-department-form{ style: 'display: none' }
           %label 学部名
-          = f.select :department, {}, { include_blank: '選択してください'}, { class: 'form-control js-department-select' , required: true }
+          = f.select :department, {}, { include_blank: '選択してください' }, { class: 'form-control js-department-select' , required: true }
         .js-faculty-form{ style: 'display: none' }
           %label 学科名
-          = f.select :faculty, {}, { include_blank: '選択してください'}, { class: 'form-control js-faculty-select' , required: true }
+          = f.select :faculty, {}, { include_blank: '選択してください' }, { class: 'form-control js-faculty-select' , required: true }
     - else
       %br
       %p 検索結果はありません

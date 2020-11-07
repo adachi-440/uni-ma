@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_192306) do
+ActiveRecord::Schema.define(version: 2020_11_07_065336) do
 
   create_table "evaluations", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "evaluator_id", null: false, comment: "評価者ID", unsigned: true
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_192306) do
     t.integer "item_status_id", null: false, comment: "商品状態ID", unsigned: true
     t.string "place", null: false, comment: "取引場所"
     t.boolean "sold", default: false, null: false, comment: "購入状態フラグ"
-    t.integer "viewer", default: 0, null: false, comment: "閲覧数", unsigned: true
+    t.integer "view", default: 0, null: false, comment: "閲覧数", unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "item_category_idx"
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(version: 2020_10_30_192306) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.binary "file", comment: "プロフィール画像"
+    t.string "provider"
+    t.string "uid"
+    t.string "encrypted_otp_secret"
+    t.string "encrypted_otp_secret_iv"
+    t.string "encrypted_otp_secret_salt"
+    t.integer "consumed_timestep"
+    t.boolean "otp_required_for_login"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

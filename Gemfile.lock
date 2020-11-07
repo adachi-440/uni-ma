@@ -50,6 +50,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     annotation (0.1.2)
     arel (9.0.0)
+    ast (2.4.1)
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
     autoprefixer-rails (10.0.1.0)
@@ -76,6 +77,7 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     childprocess (3.0.0)
+    chunky_png (1.3.14)
     coderay (1.1.3)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -94,7 +96,6 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.2)
       devise (>= 4.7.1)
-    devise-i18n-views (0.3.7)
     devise-two-factor (3.1.0)
       activesupport (< 6.1)
       attr_encrypted (>= 1.3, < 4, != 2)
@@ -115,8 +116,13 @@ GEM
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (1.1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords
     ffi (1.13.1)
     ffi (1.13.1-x64-mingw32)
+    font-awesome-sass (5.15.1)
+      sassc (>= 1.11)
     foreman (0.87.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -145,6 +151,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
+    jwt (2.2.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -166,6 +173,9 @@ GEM
     minitest (5.14.2)
     msgpack (1.3.3)
     msgpack (1.3.3-x64-mingw32)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
+    multipart-post (2.1.1)
     mysql2 (0.5.3)
     mysql2 (0.5.3-x64-mingw32)
     nio4r (2.5.4)
@@ -173,10 +183,26 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
+    oauth2 (1.4.4)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
     omniauth (1.9.1)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
+    omniauth-google-oauth2 (0.8.0)
+      jwt (>= 2.0)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.6)
+    omniauth-oauth2 (1.7.0)
+      oauth2 (~> 1.4)
+      omniauth (~> 1.9)
     orm_adapter (0.5.0)
+    parallel (1.19.2)
+    parser (2.7.2.0)
+      ast (~> 2.4.1)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
     pry (0.13.1)
@@ -215,6 +241,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.0.0)
     rake (13.0.1)
     ransack (2.3.2)
       activerecord (>= 5.2.1)
@@ -230,8 +257,36 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     rmagick (4.1.2)
     rotp (2.1.2)
+    rqrcode (1.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 0.1)
+    rqrcode_core (0.1.2)
+    rubocop (0.93.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.1.5)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8)
+      rexml
+      rubocop-ast (>= 0.6.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 2.0)
+    rubocop-ast (1.1.0)
+      parser (>= 2.7.1.5)
+    rubocop-performance (1.8.1)
+      rubocop (>= 0.87.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.8.1)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 0.87.0)
+    rubocop-rspec (1.44.1)
+      rubocop (~> 0.87)
+      rubocop-ast (>= 0.7.1)
+    ruby-progressbar (1.10.1)
+    ruby2_keywords (0.0.2)
     ruby_dep (1.5.0)
     ruby_parser (3.15.0)
       sexp_processor (~> 4.9)
@@ -282,6 +337,7 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (3.7.0)
@@ -314,10 +370,10 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
-  devise-i18n-views
   devise-two-factor
   dotenv-rails
   draper
+  font-awesome-sass
   foreman
   haml-rails
   jbuilder (~> 2.5)
@@ -326,12 +382,18 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mysql2
   omniauth
+  omniauth-google-oauth2
   pry-rails
   puma (~> 3.11)
   pundit
   rails (~> 5.2.4, >= 5.2.4.4)
   ransack
   rmagick
+  rqrcode
+  rubocop
+  rubocop-performance
+  rubocop-rails
+  rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver
   simple_form

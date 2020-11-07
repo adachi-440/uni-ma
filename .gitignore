@@ -33,3 +33,7 @@
 /.env
 
 node_modules/
+
+/public/uploads/*
+/.idea/*
+*.iml

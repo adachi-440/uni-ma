@@ -14,7 +14,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # jpg,jpeg,gif,pngのみ
   def extension_white_list
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # ファイル名を変更し拡張子を同じにする
@@ -25,7 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # 日付で保存
   def filename
     if original_filename.present?
-      time = Time.now
+      time = Time.zone.now
       name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
       name.downcase
     end
@@ -38,11 +38,4 @@ class ImageUploader < CarrierWave::Uploader::Base
     end
   end
 
-  def auto
-    manipulate! do |image|
-      image.auto_orient
-    end
-  end
-
-  process :auto
 end

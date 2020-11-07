@@ -1,4 +1,4 @@
-- if @user.profile_image?
-  = image_tag @user.profile_image.url(:th)
+- if user_signed_in?
+  = current_user.email
 - else
   %p 画像は存在しません
