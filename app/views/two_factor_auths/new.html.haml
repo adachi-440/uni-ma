@@ -1,0 +1,15 @@
+.container
+  %h1 二段階認証
+  -if @errors
+    .error
+      = @errors
+  .qr-code
+    = raw @qr_code
+
+  = form_tag two_factor_auth_path do
+    .form-group
+      = label_tag :otp_attempt
+      %br
+      = text_field_tag :otp_attempt, '', class: 'form-control'
+    .form-action
+      = submit_tag :submit, class: 'btn btn-primary'

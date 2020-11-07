@@ -35,5 +35,5 @@
 node_modules/
 
 /public/uploads/*
-.idea
+/.idea/*
 *.iml

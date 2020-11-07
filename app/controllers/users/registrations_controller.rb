@@ -51,13 +51,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  def after_sign_up_path_for(resource)
-    redirect_to new_user_registration_path, notice: '認証メールを送信しました。ご確認ください。'
-  end
+  # def after_sign_up_path_for(resource)
+  #   redirect_to new_user_registration_path, notice: '認証メールを送信しました。ご確認ください。'
+  # end
 
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
-    redirect_to new_user_registration_path, notice: '認証メールを送信しました。ご確認ください。'
+    new_user_registration_path notice: '認証メールを送信しました。ご確認ください。'
   end
 
   def after_update_path_for(resource)

@@ -1,8 +1,11 @@
 class User < ApplicationRecord
+  devise :two_factor_authenticatable,
+         :otp_secret_encryption_key => ENV['ENCRYPTION_KEY']
+
   mount_uploader :profile_image, ImageUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable, :omniauthable, omniauth_providers: %i[google_oauth2]
 
   def confirmation_expired?

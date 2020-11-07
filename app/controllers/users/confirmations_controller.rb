@@ -20,7 +20,8 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
 
     if resource.errors.empty?
       set_flash_message!(:notice, :confirmed)
-      redirect_to new_user_session_path, notice: 'メールアドレスを確認しました。'
+      sign_in(resource)
+      redirect_to new_users_main_registration_path, notice: 'メールアドレスを確認しました。'
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :show }
     end

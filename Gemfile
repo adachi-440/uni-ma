@@ -67,6 +67,8 @@ gem 'devise-i18n-views'
 gem 'devise-two-factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'devise-two-factor'
+gem 'rqrcode'
 
 # viewer
 gem 'bootstrap-sass'
