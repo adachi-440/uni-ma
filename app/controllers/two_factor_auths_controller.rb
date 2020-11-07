@@ -41,9 +41,9 @@ class TwoFactorAuthsController < ApplicationController
   private
 
   def build_qr_code
-    label = "service_name"
+    label = "unima"
     # issuerでGoogle Authenticator上の登録サービス名として表示
-    issuer ="company_name"
+    issuer ="adachiinc"
     uri = current_user.otp_provisioning_uri(label, issuer: issuer)
     qrcode = RQRCode::QRCode.new(uri)
     qrcode.as_svg(
