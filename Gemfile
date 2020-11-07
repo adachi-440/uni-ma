@@ -63,7 +63,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # 認証
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise-i18n-views'
 gem 'devise-two-factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
