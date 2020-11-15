@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_065336) do
+ActiveRecord::Schema.define(version: 2020_11_08_112627) do
 
   create_table "evaluations", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "evaluator_id", null: false, comment: "評価者ID", unsigned: true
@@ -41,56 +41,103 @@ ActiveRecord::Schema.define(version: 2020_11_07_065336) do
     t.index ["user_id"], name: "user_idx"
   end
 
+  create_table "item_categories", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.string "label", null: false, comment: "カテゴリー名"
+    t.integer "sort", null: false, comment: "sort", unsigned: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_department_categories", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.integer "item_sub_category_id", null: false, comment: "サブカテゴリーID", unsigned: true
+    t.string "label", null: false, comment: "詳細学問名"
+    t.integer "sort", null: false, comment: "sort", unsigned: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_sub_category_id"], name: "item_sub_category_idx"
+  end
+
   create_table "item_images", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
-    t.string "file", null: false, comment: "ファイル名"
+    t.integer "item_id", null: false, comment: "商品ID", unsigned: true
+    t.string "name", null: false, comment: "ファイル名"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "item_idx"
+  end
+
+  create_table "item_sold_statuses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.string "label", null: false, comment: "購入状態"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_statuses", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.string "label", null: false, comment: "商品状態"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "item_sub_categories", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.string "label", null: false, comment: "商品サブカテゴリー名"
+    t.integer "sort", null: false, comment: "sort", unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "item_tags", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.integer "item_id", null: false, comment: "商品ID", unsigned: true
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "item_idx"
   end
 
   create_table "items", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "user_id", null: false, comment: "ユーザーID", unsigned: true
     t.string "name", null: false, comment: "商品名"
     t.string "explanation", limit: 3000, comment: "商品説明"
-    t.integer "item_image_id", null: false, comment: "商品画像ID", unsigned: true
     t.integer "item_category_id", null: false, comment: "カテゴリーID", unsigned: true
-    t.integer "item_tag_id", comment: "タグID", unsigned: true
+    t.integer "item_department_category_id", null: false, comment: "詳細学問ID", unsigned: true
     t.integer "price", null: false, comment: "価格", unsigned: true
-    t.integer "lecture_id", comment: "講義情報ID", unsigned: true
-    t.integer "item_status_id", null: false, comment: "商品状態ID", unsigned: true
     t.string "place", null: false, comment: "取引場所"
-    t.boolean "sold", default: false, null: false, comment: "購入状態フラグ"
+    t.integer "item_status_id", null: false, comment: "商品状態ID", unsigned: true
+    t.integer "item_sold_status_id", default: 1, null: false, comment: "購入状態ID", unsigned: true
     t.integer "view", default: 0, null: false, comment: "閲覧数", unsigned: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_category_id"], name: "item_category_idx"
+    t.index ["item_department_category_id"], name: "item_department_category_idx"
+    t.index ["item_sold_status_id"], name: "item_sold_status_idx"
     t.index ["item_status_id"], name: "item_status_idx"
-    t.index ["item_tag_id"], name: "item_tag_idx"
-    t.index ["lecture_id"], name: "lecture_idx"
     t.index ["user_id"], name: "user_idx"
   end
 
+  create_table "lecture_terms", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.string "term", null: false, comment: "講義時期"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lectures", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
+    t.integer "item_id", null: false, comment: "商品ID", unsigned: true
     t.string "name", null: false, comment: "講義名"
     t.string "teacher", comment: "教授名"
     t.integer "lecture_term_id", comment: "講義時期ID", unsigned: true
     t.string "explanation", limit: 1000, comment: "講義説明"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "item_idx"
     t.index ["lecture_term_id"], name: "lecture_term_idx"
   end
 
   create_table "messages", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|
     t.integer "item_id", null: false, comment: "商品ID", unsigned: true
+    t.integer "user_id", null: false, comment: "ユーザーID", unsigned: true
     t.string "content", null: false, comment: "メッセージ内容"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "item_idx"
+    t.index ["user_id"], name: "user_idx"
   end
 
   create_table "notifications", id: :integer, unsigned: true, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", comment: "ID", force: :cascade do |t|

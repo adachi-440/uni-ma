@@ -8,6 +8,8 @@ class User < ApplicationRecord
   devise :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable, :omniauthable, omniauth_providers: %i[google_oauth2]
 
+  has_many :items
+
   def confirmation_expired?
     # メールアドレス確認メール有効期限チェック(期限はconfig/initializers/devise.rbのconfirm_withinで設定)
     confirmation_period_expired?

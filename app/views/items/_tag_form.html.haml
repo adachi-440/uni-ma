@@ -1,0 +1,16 @@
+.card.mb-5
+  .card-body
+    %table{ style: 'width: 100%' }
+      %thead{ style: 'width: 100%' }
+        %tr
+          %th タグの設定
+      %tbody{ style: 'width: 100%' }
+        = f.fields_for :tags do |i|
+          = render 'tag_fields', f:i
+      %tfoot{ style: 'width: 100%' }
+        %tr
+          %td
+            .text-center.mt-3
+              = link_to_add_association f, :tags, class: 'btn btn-primary rounded-pill', role: 'button' do
+                %i.fa.fa-plus
+                タグを追加

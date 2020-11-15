@@ -27,9 +27,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :viewer do
-    resources :items
+  resources :items do
+    get :department_category_search, on: :collection
   end
 
-  root to: 'viewer/items#index'
+  root to: 'items#index'
 end
