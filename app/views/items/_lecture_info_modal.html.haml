@@ -1,0 +1,23 @@
+.modal.fade#lecture-info-modal{ 'tabindex': '-1', 'aria-labelledby': 'lecture-info-label' }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5.modal-title#lecture-info-label 講義情報
+        %button.close{ type: 'button', 'data-dismiss': 'modal', 'aria-label': '閉じる' }
+          %span{ 'aria-hidden': 'true' } &times;
+
+      .modal-body.text-center
+        %table.table.table-bordered
+          %tbody
+            %tr
+              %td 講義名
+              %td= lecture.name
+            %tr
+              %td 講義説明
+              %td= lecture.explanation
+            %tr
+              %td 教授名
+              %td= lecture.teacher
+            %tr
+              %td 講義時期
+              %td= lecture.lecture_term_term

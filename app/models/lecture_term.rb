@@ -1,3 +1,3 @@
 class LectureTerm < ApplicationRecord
-  belongs_to :lecture
+  has_many :lectures
 end
