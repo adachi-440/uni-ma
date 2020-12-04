@@ -1,0 +1,4 @@
+.container{ style: 'width: 80%' }
+  %h1{ class: 'text-center' } 出品編集
+  = simple_form_for @item, url: item_path, html: {} do |f|
+    = render 'form', f: f

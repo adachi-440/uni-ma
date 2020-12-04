@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   belongs_to :user
-  belongs_to :category, class_name: 'ItemCategory', optional: true
-  belongs_to :department_category, class_name: 'ItemDepartmentCategory', optional: true
-  belongs_to :status, class_name: 'ItemStatus', optional: true
+  belongs_to :category, class_name: 'ItemCategory', optional: true, foreign_key: 'item_category_id'
+  belongs_to :department_category, class_name: 'ItemDepartmentCategory', optional: true, foreign_key: 'item_department_category_id'
+  belongs_to :status, class_name: 'ItemStatus', optional: true, foreign_key: 'item_status_id'
   belongs_to :sold_status, class_name: 'ItemSoldStatus', optional: true
 
   has_many :images, class_name: 'ItemImage', dependent: :destroy
@@ -22,6 +22,11 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :place, presence: true, length: { maximum: 100 }
   validates :images, presence: true
+
+  delegate :name, to: :user, prefix: true
+  delegate :label, to: :category, prefix: true
+  delegate :label, to: :department_category, prefix: true
+  delegate :label, to: :status, prefix: true
 
   def lecture?
     lecture.created_at.present?

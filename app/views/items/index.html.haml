@@ -1,4 +1,13 @@
-- if user_signed_in?
-  = current_user.email
-- else
-  %p 画像は存在しません
+.container
+  = @item.each do |item|
+    .row
+      .col-md-2
+        = link_to item_path(id: item.id) do
+          .card.img-thumbnail
+            .card-img-top
+              = image_tag item.images.first.name.thumb.url
+            .card-body
+              .card-title
+                = item.name
+              .card-text
+                = item.price
