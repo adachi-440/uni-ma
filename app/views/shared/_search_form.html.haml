@@ -1,0 +1,11 @@
+= search_form_for @q do |f|
+  = f.text_field :name_cont, placeholder: 'キーワードで検索', class: 'item-name-search'
+  = f.button :submit, class: 'item-search-submit-button' do
+    %i.fa.fa-search
+  %br
+  %br
+  %br
+  %button.btn.btn-outline-primary.btn-block{ type: 'button', 'data-target': '#detail-search-collapse', class: 'btn btn-outline-primary btn-block','data-toggle': 'collapse', 'aria-expanded': 'false', 'aria-controls': 'detail-search-collapse' }
+    %i.fa.fa-plus
+    検索条件を追加
+  = render 'shared/detail_search_form', f: f

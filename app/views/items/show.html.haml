@@ -1,0 +1,43 @@
+.container{ style: 'width: 60%' }
+  .card.card-body.text-center.mb-5
+    %h5.card-title= @item.name
+    .card-text.item-explanation
+      = @item.explanation
+    .row
+      = @item.images.each do |image|
+        .col-md-2
+          = image_tag image.name.thumb.url
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %td 出品者
+          %td= @item.user_name
+        %tr
+          %td カテゴリー
+          %td
+            -#リンク付きに変更する余地あり
+            %li.breadcrumb-item= @item.category_label
+            %li.breadcrumb-item= @item.department_category.sub_category_label
+            %li.breadcrumb-item= @item.department_category_label
+        %tr
+          %td タグ
+          %td= @item.decorate.tag_names
+        %tr
+          %td 商品の状態
+          %td= @item.status_label
+        %tr
+          %td 取引場所
+          %td= @item.place
+        %tr
+          %td 講義情報
+          %td{ 'data-toggle': 'modal', 'data-target': '#lecture-info-modal' }
+            = @item.lecture.name
+        %tr
+          %td 金額
+          %td= @item.price
+
+    = render 'messages_body'
+
+    %button.btn.btn-outline-primary.btn-block
+      購入する
+= render 'lecture_info_modal', lecture: @item.lecture

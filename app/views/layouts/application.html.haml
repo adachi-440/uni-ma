@@ -5,14 +5,21 @@
     %title App
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js', 'data-turbolinks-track': 'reload', media: 'all'
-    = javascript_include_tag assets_path('bundle.js'), media: 'all'
+    -# = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    -# = stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.css', media: 'all', 'data-turbolinks-track': 'reload'
+    -# = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    -# = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js', 'data-turbolinks-track': 'reload', media: 'all'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %p.notice
-      = notice
-    %p.alert
-      = alert
+    .container
+      = render 'shared/search_form'
+    .container
+      %p.notice
+        = notice
+      %p.alert
+        = alert
+    %br
+    %br
+    %br
     = yield

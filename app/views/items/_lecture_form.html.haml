@@ -1,0 +1,12 @@
+.card.mb-5
+  .card-body
+    = f.fields_for :lecture do |i|
+      .row
+        .col-md-4
+          = i.input :name, label: '講義名', input_html: { class: 'form-control' }
+        .col-md-4
+          = i.input :teacher, label: '教授名', input_html: { class: 'form-control' }
+        .col-md-4
+          = i.input :lecture_term_id, as: :select, collection: @lecture_terms, include_blank: '選択してください', label_method: :term, value_method: :id, label: '講義時期', input_html: { class: 'form-control' }
+
+      = i.input :explanation, as: :text, label: '講義説明', input_html: { 'rows': 5, class: 'form-control mb-5' }

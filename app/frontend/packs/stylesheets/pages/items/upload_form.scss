@@ -1,0 +1,36 @@
+.input-zone{
+  width:80%;
+  background: #f6f6f6;
+  border: 1px dashed #aaa;
+  box-sizing: border-box;
+  height: 150px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+  align-items: center; /* 縦方向中央揃え */
+  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+  justify-content: center; /* 横方向中央揃え */
+}
+.js-image-preview{
+  margin: 0 5px;
+}
+.file-area{
+  height: 200px;
+  list-style: none;
+}
+.js-image-preview__wapper{
+  height: 150px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+  align-items: center; /* 縦方向中央揃え */
+  -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+  justify-content: center; /* 横方向中央揃え */
+}
+.js-image-upload{
+  display: none;
+}
+
+li{
+  display: inline-block;
+}

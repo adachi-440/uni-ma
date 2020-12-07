@@ -1,0 +1,16 @@
+%label
+  出品画像 -
+  %small
+    必須
+.js-upload-image-box
+  .item-num-0#js-image-box__container
+    = f.fields_for :images do |i|
+      .clearfix
+        %ul#js-previews.file-area.d-flex.align-items-center.justify-content-center
+          %li.input-zone
+            %label.js-upload-label
+              .js-upload-label__text
+                %i.fas.fa-camera
+                アップロード
+                .input-area
+                  = i.file_field :name, type: 'file', name: "item[images_attributes][][name]", value:"", id:"js-img-file", class: 'hidden js-image-upload'

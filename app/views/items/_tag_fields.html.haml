@@ -1,0 +1,6 @@
+%tr.nested-fields{ style: 'width: 100%' }
+  %td{ style: 'width: 100%' }
+    = f.input :name, label: false, input_html: { class: 'form-control' }
+  %td
+    = link_to_remove_association f, class: 'btn btn-danger btn-circle btn-circle-sm m-1' do
+      %i.fa.fa-times
