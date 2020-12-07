@@ -11,6 +11,8 @@ class Item < ApplicationRecord
   has_many :favorites
 
   has_one :lecture, dependent: :destroy
+  has_one :lecture_term, through: :lecture
+  has_one :sub_category, class_name: 'ItemSubCategory', through: :department_category
 
   accepts_nested_attributes_for :images, allow_destroy: true
   accepts_nested_attributes_for :tags, allow_destroy: true

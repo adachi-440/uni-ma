@@ -1,14 +1,16 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show]
-  before_action :set_item_status, only: [:new, :edit]
-  before_action :set_category, only: [:new, :edit]
-  before_action :set_sub_category, only: [:new, :edit]
-  before_action :set_lecture_term, only: [:new, :edit]
+  before_action :set_item_status, only: [:new, :edit, :index]
+  before_action :set_category, only: [:new, :edit, :index]
+  before_action :set_sub_category, only: [:new, :edit, :index]
+  before_action :set_lecture_term, only: [:new, :edit, :index]
   before_action :set_selected_category, only: [:edit]
   before_action :set_department_category, only: [:edit]
+  before_action :set_item_sold_status, only: [:index]
 
   def index
-    @item = Item.all.decorate
+    @q = Item.ransack(search_params)
+    @items = @q.result(distinct: true).decorate
     @user = current_user
   end
 
@@ -25,7 +27,11 @@ class ItemsController < ApplicationController
   def department_category_search
     department_categories = ItemDepartmentCategory.where(item_sub_category_id: params[:item_sub_category_id])
     respond_to do |format|
-      format.html { redirect_to :new }
+      if params[:path_name].include?('/new')
+        format.html { redirect_to :new }
+      else
+        format.html { redirect_to :index }
+      end
       format.json { render json: department_categories }
     end
   end
@@ -70,8 +76,27 @@ class ItemsController < ApplicationController
     ).merge!(user_id: current_user.id)
   end
 
+  def search_params
+    params.require(:q).permit(
+        :name_cont,
+        :item_category_id_eq,
+        :sub_category_id_eq,
+        :item_department_category_id_eq,
+        :tags_name_eq,
+        :item_sold_status_id_eq,
+        :item_status_id_eq,
+        :lecture_name_cont,
+        :lecture_teacher_cont,
+        :lecture_term_id_eq
+    )
+  end
+
   def set_item_status
     @item_statuses = ItemStatus.all
+  end
+
+  def set_item_sold_status
+    @item_sold_statuses = ItemSoldStatus.all
   end
 
   def set_category

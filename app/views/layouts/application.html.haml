@@ -12,8 +12,14 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %p.notice
-      = notice
-    %p.alert
-      = alert
+    .container
+      = render 'shared/search_form'
+    .container
+      %p.notice
+        = notice
+      %p.alert
+        = alert
+    %br
+    %br
+    %br
     = yield

@@ -6,10 +6,10 @@
   .col-md-3
     .form-group
       %label カテゴリー2
-      = select_tag(:item_sub_category_id, options_for_select(@sub_categories, @selected_sub_category.id.to_i), class: 'form-control js-sub-category-select', include_blank: '選択してください')
+      = select_tag(:item_sub_category_id, options_for_select(@sub_categories), class: 'form-control js-sub-category-select', include_blank: '選択してください')
   .col-md-3
     .form-group
-      = f.input :item_department_category_id, as: :select, collection: @department_categories, include_blank: '選択してください', selected: @selected_department_category.id, label_method: :label, value_method: :id, label: 'カテゴリー3', input_html: { class: 'form-control js-department-category-select' }
+      = f.input :item_department_category_id, as: :select, collection: {}, include_blank: '選択してください', label: 'カテゴリー3', input_html: { class: 'form-control js-department-category-select' }, disabled: true
   .col-md-3
     .form-group
       = f.input :item_status_id, as: :select, collection: @item_statuses, include_blank: '選択してください', label_method: :label, value_method: :id, label: '商品状態', input_html: { class: 'form-control' }
