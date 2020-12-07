@@ -20,3 +20,5 @@ import './stylesheets/application';
 import 'regenerator-runtime/runtime'
 import './src/main'
 import 'cocoon';
+import 'select2';
+import 'select2/dist/css/select2.css';

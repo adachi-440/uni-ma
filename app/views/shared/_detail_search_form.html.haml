@@ -1,0 +1,47 @@
+.collapse#detail-search-collapse.mt-3
+  .card.card-body
+    .row
+      .col-md-4.form-group
+        %label カテゴリー
+        = f.collection_select :item_category_id_eq, @categories, :id, :label, { include_blank: '選択してください' }, class: 'form-control'
+      .col-md-4.form-group
+        %label カテゴリー2
+        = f.collection_select :sub_category_id_eq, @all_sub_categories, :id, :label, { include_blank: '選択してください' }, class: 'form-control js-sub-category-select'
+      .col-md-4.form-group
+        %label カテゴリー3
+        = f.select :item_department_category_id_eq, {}, { include_blank: '選択してください' }, disabled: true, class: 'form-control js-department-category-select'
+    .row
+      .col-md-4.form-group
+        %label タグ
+        = f.text_field :tags_name_eq, { class: 'form-control' }
+      .col-md-4.form-group
+        %label 購入状態
+        = f.collection_select :item_sold_status_id_eq, @item_sold_statuses, :id, :label, { include_blank: '選択してください'}, class: 'form-control'
+      .col-md-4.form-group
+        %label 商品状態
+        = f.collection_select :item_status_id_eq, @item_statuses, :id, :label, { include_blank: '選択してください'}, class: 'form-control'
+    .row
+      .col-md-4.form-group
+        %label 講義名
+        = f.text_field :lecture_name_cont, { class: 'form-control' }
+      .col-md-4.form-group
+        %label 教授名
+        = f.text_field :lecture_teacher_cont, { class: 'form-control' }
+      .col-md-4.form-group
+        %label 講義時期
+        = f.collection_select :lecture_term_id_eq, @lecture_terms, :id, :term, { include_blank: '選択してください'}, class: 'form-control'
+    -#.row
+    -#  .col-md-4.form-group
+    -#    %label 大学名
+    -#    %br
+    -#    .university-select{ style: 'width: 100%' }
+    -#      = select_tag :university_eq, options_for_select({}), include_blank: '選択してください', class: 'form-control js-select2'
+    -#  .col-md-4.form-group
+    -#    %label 学部名
+    -#    = select_tag :department_eq, options_for_select({}), include_blank: '選択してください', class: 'form-control'
+    -#  .col-md-4.form-group
+    -#    %label 学科名
+    -#    = select_tag :faculty_eq, options_for_select({}), include_blank: '選択してください', class: 'form-control'
+    = f.button :submit, class: 'btn btn-outline-primary btn-block' do
+      %i.fa.fa-search
+      検索

@@ -21,7 +21,8 @@ export default class ItemsForm {
           timeout: 1000,
           dataType: 'json',
           data: {
-            item_sub_category_id : value
+            item_sub_category_id : value,
+            path_name: location.pathname
           }
         })
           .done((data) => {

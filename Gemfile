@@ -83,6 +83,7 @@ gem 'jquery-ui-rails'
 gem 'pundit'
 gem 'simple_form'
 gem 'font-awesome-sass'
+gem 'select2-rails'
 
 # 検索
 gem 'ransack'

@@ -1,0 +1,35 @@
+-# = render 'upload_form', f: f
+-# .row
+-#   .col-md-3
+-#     .form-group
+-#       = f.input :item_category_id, as: :select, collection: @categories, include_blank: '選択してください', label_method: :label, value_method: :id, label: 'カテゴリー1', input_html: { class: 'form-control' }
+-#   .col-md-3
+-#     .form-group
+-#       %label カテゴリー2
+-#       = select_tag(:item_sub_category_id, options_for_select(@sub_categories, @selected_sub_category.id.to_i), class: 'form-control js-sub-category-select', include_blank: '選択してください')
+-#   .col-md-3
+-#     .form-group
+-#       = f.input :item_department_category_id, as: :select, collection: @department_categories, include_blank: '選択してください', selected: @selected_department_category.id, label_method: :label, value_method: :id, label: 'カテゴリー3', input_html: { class: 'form-control js-department-category-select' }
+-#   .col-md-3
+-#     .form-group
+-#       = f.input :item_status_id, as: :select, collection: @item_statuses, include_blank: '選択してください', label_method: :label, value_method: :id, label: '商品状態', input_html: { class: 'form-control' }
+-# .form-group
+-#   = f.input :name, label: '出品名', input_html: { class: 'form-control' }
+-# .form-group
+-#   = f.input :explanation, as: :text, label: '商品説明', input_html: { 'rows': 5, class: 'form-control' }
+-# = render 'tag_form', f: f
+-# .form-check.checkbox-custom.checkbox-primary.mb-3.p-0
+-#   = check_box_tag(:fill_in_lecture_info, '1', f.object.lecture?, { class: 'js-fill-in-lecture-info' })
+-#   %label{ for: 'fill_in_lecture_info' }
+-#     講義情報を入力する
+-# .js-lecture-form{ style: 'display: none' }
+-#   = render 'lecture_form', f: f
+-#
+-# .row.mb-3
+-#   .col-md-6
+-#     .form-group
+-#       = f.input :place, label: '取引場所', input_html: { class: 'form-control' }
+-#   .col-md-6
+-#     .form-group
+-#       = f.input :price, label: '価格', input_html: { class: 'form-control' }
+-# = f.submit '変更', class: 'btn btn-outline-primary btn-block mb-5'
